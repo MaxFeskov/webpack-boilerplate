@@ -1,7 +1,7 @@
-const webpack = require('webpack')
-const { merge } = require('webpack-merge')
-const paths = require('./paths.js')
-const common = require('./webpack.common.js')
+const webpack = require('webpack');
+const { merge } = require('webpack-merge');
+const paths = require('./paths.js');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -15,28 +15,31 @@ module.exports = merge(common, {
     hot: true,
     port: 8080,
   },
-  module: { rules: [
-    {
-      test: /\.(css|sass|scss)$/,
-      use: [
-        'style-loader',
-        {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true, importLoaders: 2,
+  module: {
+    rules: [
+      {
+        test: /\.(css|sass|scss)$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 2,
+            },
           },
-        },
-        'postcss-loader',
-        {
-          loader: 'sass-loader', options: {
-            sourceMap: true,
-            additionalData: '@import "/src/styles/main.scss";',
+          'postcss-loader',
+          {
+            loader: 'sass-loader',
+
+            options: {
+              sourceMap: true,
+              additionalData: '@import "/src/styles/main.scss";',
+            },
           },
-        },
-      ],
-    },
-  ] },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-  ],
-})
+        ],
+      },
+    ],
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+});
