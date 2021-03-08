@@ -8,19 +8,12 @@ const paths = require('./paths')
 
 module.exports = merge(common, {
   mode: 'production',
-  target: 'browserslist',
   devtool: false,
   output: {
     path: paths.build,
     publicPath: './',
     filename: 'js/[name].bundle.js',
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
-      chunkFilename: '[id].css',
-    }),
-  ],
   module: { rules: [
     {
       test: /\.(css|sass|scss)$/,
@@ -42,6 +35,12 @@ module.exports = merge(common, {
       ],
     },
   ] },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css',
+      chunkFilename: '[id].css',
+    }),
+  ],
   optimization: {
     minimize: true,
     minimizer: [new OptimizeCssAssetsPlugin(), new TerserPlugin()],

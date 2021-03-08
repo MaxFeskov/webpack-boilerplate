@@ -23,7 +23,7 @@ module.exports = merge(common, {
         {
           loader: 'css-loader',
           options: {
-            sourceMap: true, importLoaders: 2, modules: false,
+            sourceMap: true, importLoaders: 2,
           },
         },
         'postcss-loader',
